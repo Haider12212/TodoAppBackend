@@ -1,5 +1,7 @@
 package com.Todoapp.TodoApp.model;
 
+import com.Todoapp.TodoApp.util.CustomDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +23,7 @@ public class Todos {
 
     private String description;
 
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private Date time;
 
 }

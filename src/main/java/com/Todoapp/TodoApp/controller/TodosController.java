@@ -33,11 +33,21 @@ public class TodosController {
     @PutMapping("/todos/{todoId}")
     public String updateTodo(@PathVariable String todoId){
         try {
-            System.out.println("The id of the todo to be updated is: " + todoId);
             return todoService.updateTodo(todoId);
         }catch (Exception e){
             return e.toString();
         }
 
     }
+
+    @Async
+    @DeleteMapping("/todos/{todoId}")
+    public String deleteTodo(@PathVariable String todoId){
+        try{
+            return todoService.deleteTodo(todoId);
+        }catch (Exception e){
+            return e.toString();
+        }
+    }
+
 }

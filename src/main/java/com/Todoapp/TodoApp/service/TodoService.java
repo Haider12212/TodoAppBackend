@@ -43,4 +43,14 @@ public class TodoService {
         }
 
     }
+
+    public String deleteTodo(String todoId) {
+        try {
+            Todos todo = todosDao.getBy_id(todoId);
+            todosDao.delete(todo);
+            return "Deleted Successfully";
+        }catch (Exception e){
+            return e.toString();
+        }
+    }
 }
