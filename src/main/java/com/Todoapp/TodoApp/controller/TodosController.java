@@ -3,6 +3,7 @@ package com.Todoapp.TodoApp.controller;
 import com.Todoapp.TodoApp.model.Todos;
 import com.Todoapp.TodoApp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class TodosController {
         return todoService.getTodosById(userId);
     }
 
+    @Async
     @PutMapping("/todos/{todoId}")
-    public String updateTodo(@PathVariable String todoId, @RequestBody Todos todos){
+    public String updateTodo(@PathVariable String todoId){
         try {
-            todoService.updateTodo(todoId, todos);
-            System.out.println(todoId);
-            return "Updated Successfully";
+            System.out.println("The id of the todo to be updated is: " + todoId);
+            return todoService.updateTodo(todoId);
         }catch (Exception e){
             return e.toString();
         }

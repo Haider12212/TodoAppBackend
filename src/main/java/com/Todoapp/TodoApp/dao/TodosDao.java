@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface TodosDao extends MongoRepository<Todos, String>{
     List<Todos> findByuserId(String userId);
-    Todos getById(String id);
+    Todos getBy_id(String id);
 }

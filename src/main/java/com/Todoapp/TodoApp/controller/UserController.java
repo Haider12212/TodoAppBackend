@@ -30,8 +30,6 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> signIn(@RequestBody Users user){
         String email = user.getEmail();
         String password = user.getPassword();
-       System.out.println("Email is " + email + " password is " + password);
-       System.out.println("This is the second log"+ Objects.requireNonNull(userService.verifyUser(email, password).getBody()).toString());
         return userService.verifyUser(email,password);
    }
 

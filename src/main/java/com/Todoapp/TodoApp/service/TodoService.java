@@ -32,16 +32,13 @@ public class TodoService {
         return todosDao.findByuserId(userId);
     }
 
-    public ResponseEntity<String> updateTodo(String id,Todos todos) {
+    public String updateTodo(String id) {
         try {
-            Todos updatedTodo = todosDao.findById(id).orElseThrow();
-            updatedTodo.setTitle(todos.getTitle());
-            updatedTodo.setDescription(todos.getDescription());
-            updatedTodo.setTime(todos.getTime());
-            todosDao.save(updatedTodo);
-            return ResponseEntity.ok("Todo updated successfully");
+            Todos todos = todosDao.getBy_id(id);
+            todos.set_id(id);
+            return "Todo Updated Successfully";
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Internal server error");
+            return e.toString();
 
         }
 
